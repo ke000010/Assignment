@@ -2,16 +2,17 @@ import java.util.Scanner;
 /**
  * Class Name: CST8284_21S_301
  * Author Name: Jie Ke
+ * Class Name: LendingLibraryController
  * Professor Name: Samira Ouaaz
  * Date: June 15, 2021
  * Description: This program solution the Assignment1 task. 
 */
 public class LendingLibraryController{
-LendingLibrary bookLib = new LendingLibrary();
+private LendingLibrary bookLib;
 private static Scanner input = new Scanner(System.in);
 
 public LendingLibraryController(){
-	
+	bookLib = new LendingLibrary();
 }
 /**
  * Call getResponseTo() and makeUser() methods to
@@ -142,7 +143,7 @@ public void listBookLoans() {
 	int i = 0;
 	for(BookLoan loan : bookLib.getLoanReg()) {
 		if(loan == null) break;
-		   System.out.printf("Book loan #%d\n",i+1);
+		   System.out.printf("Book loan #%d\n",(i+1));
 		   System.out.println(loan.toString());
 		   i++;
 	}

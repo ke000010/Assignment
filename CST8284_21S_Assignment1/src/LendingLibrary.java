@@ -81,7 +81,7 @@ public class LendingLibrary {
 			i = MAX_LOAN_NUMBER-1;   
 			return false;			
 		}
-//		int bookIndex = -1;
+
 		int j = 0;
 		for(User user : userReg) {
 			if(user == null) {
@@ -90,13 +90,13 @@ public class LendingLibrary {
 			if((l.getUser().getFirstName().equals(user.getFirstName())) ||
 					(l.getUser().getLastName().equals(user.getLastName()))){
 				l.setUser(user);
-//				bookIndex = j;
+
 				break;
 			}else {
 				j++;
 			}
 		}
-//		bookIndex = -1;
+
 		j = 0;
 		for(Book book : bookReg) {
 
@@ -106,7 +106,7 @@ public class LendingLibrary {
 			}
 			if(l.getBook().getIsbnNumber().equals(book.getIsbnNumber())) {
 				l.setBook(book);
-//				bookIndex = j;
+
 				break;
 
 			}else {
