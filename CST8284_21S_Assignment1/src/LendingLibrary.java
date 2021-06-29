@@ -1,11 +1,12 @@
-  
+
 /**
  * Class Name: CST8284_21S_301
  * Author Name: Jie Ke
  * Professor Name: Samira Ouaaz
  * Date: June 15, 2021
+ * Class Name:LendingLibrary
  * Description: This program solution the Assignment1 task. 
-*/
+ */
 /**
  * This class is the The add/find methods process the addition 
  * and searching of items in the corresponding arrays. 
@@ -49,12 +50,12 @@ public class LendingLibrary {
 		int i = -1;
 		setLastUserIndex(i);
 		i = getLastUserIndex();
-		if(i >= MAX_USER_NUMBER-1) {
-			//		i = MAX_USER_NUMBER;
+		if(i >= MAX_USER_NUMBER) {
 			return false; 
 		}
 		userReg[i] = u;
-		userReg[i].setId(userReg[i].getId() + i + User.getUserNextId());
+		//modify in Jun 26,2021
+		userReg[i].setId(i + User.getUserNextId());
 
 		return true;
 	}
@@ -63,9 +64,7 @@ public class LendingLibrary {
 		int i = -1;
 		setLastBookIndex(i);
 		i = getLastBookIndex();
-		if(i >= MAX_BOOK_NUMBER -1) {
-			System.out.println("");
-			i = MAX_BOOK_NUMBER -1;
+		if(i >= MAX_BOOK_NUMBER) {
 			return false; // can't add a new book
 		}
 		bookReg[i] = b; // book add in the last index of array
@@ -77,11 +76,9 @@ public class LendingLibrary {
 		int i = -1;
 		setLastLoanIndex(i);
 		i = getLastLoanIndex();
-		if (i >= MAX_LOAN_NUMBER-1) { 
-			i = MAX_LOAN_NUMBER-1;   
+		if (i >= MAX_LOAN_NUMBER) { 
 			return false;			
 		}
-
 		int j = 0;
 		for(User user : userReg) {
 			if(user == null) {
@@ -90,7 +87,7 @@ public class LendingLibrary {
 			if((l.getUser().getFirstName().equals(user.getFirstName())) ||
 					(l.getUser().getLastName().equals(user.getLastName()))){
 				l.setUser(user);
-
+				loanReg[i] = l;
 				break;
 			}else {
 				j++;
@@ -106,7 +103,7 @@ public class LendingLibrary {
 			}
 			if(l.getBook().getIsbnNumber().equals(book.getIsbnNumber())) {
 				l.setBook(book);
-
+				loanReg[i] = l;
 				break;
 
 			}else {
@@ -114,11 +111,7 @@ public class LendingLibrary {
 			}
 
 		}
-		if(userCanBorrow(l.getUser()) || ( isBookLoaned(l.getBook()))){			
 
-			loanReg[i] = l;
-
-		}
 
 		return true;
 	}
@@ -126,17 +119,20 @@ public class LendingLibrary {
 	public User findUser(String firstName, String lastName){
 
 		for(User user : userReg) {
+			if (user == null)
+				break;
 			if ((firstName.equals(user.getFirstName())) && 
 					(lastName.equals(user.getLastName())))
 				return user;
 		}
-		System.out.println("No user with this name!");
 		return null;
 	}
 	//search a added book based on ISBN
 	public Book findBook(String isbnNumber) {
 
 		for(Book book : bookReg) {
+			if(book == null)
+				break;
 			if(book.getIsbnNumber().equals(isbnNumber)) 
 				return book;
 		}
@@ -146,10 +142,12 @@ public class LendingLibrary {
 	public BookLoan findLoan(String isbnNumber) {
 
 		for(BookLoan loan : loanReg) {
+			if(loan == null)
+				break;
 			if(loan.getBook().getIsbnNumber().equals(isbnNumber)) {
 				return loan;
 			}	
-			System.out.println("No book loan found with this isbn number");
+
 		}
 		return null;
 	}
@@ -158,26 +156,23 @@ public class LendingLibrary {
 		int j = 0;
 		for (BookLoan loan: loanReg) {
 			if(loan == null) break;
-			if(u.getId() == loan.getUser().getId()) {
+			if(loan.getUser().getId() == u .getId()) {
 				j++;
 			}
 		}				
 		if(j >= MAX_LOAN_PER_USER) {	
-			System.out.println("Can not loan more");
 			return false;  
 		}else {
-
 			return true;  	
 		}
 	}
 	//Verified if the book is loaned.
 	public boolean isBookLoaned(Book b) {
 		for(BookLoan loan : loanReg) {
-//			if (loan == null) {
-//				break;
-//			}
+			if(loan == null)
+				break;
 			if((loan.getBook().getIsbnNumber()).equals(b.getIsbnNumber())){
-				loan.setBook(b);
+				//	loan.setBook(b);
 				return true;  
 			}
 		}	
