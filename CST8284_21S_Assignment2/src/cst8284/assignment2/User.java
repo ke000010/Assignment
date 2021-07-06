@@ -1,3 +1,4 @@
+package cst8284.assignment2;
 
 /**
  * Class Name: CST8284_21S_301
@@ -21,8 +22,7 @@ public class User {
 	}
 
 	public User(int id, String firstName, String lastName, String address, int age) {
-		this.id = userNextId;
-		userNextId++;
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
@@ -32,7 +32,7 @@ public class User {
 
 	public User(String firstName, String lastName, String address, int age) {
 
-		this(userNextId, firstName, lastName, address, age);
+		this(userNextId++, firstName, lastName, address, age);
 
 	}
 

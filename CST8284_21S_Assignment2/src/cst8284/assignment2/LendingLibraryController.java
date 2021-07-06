@@ -1,3 +1,4 @@
+package cst8284.assignment2;
 import java.util.Objects;
 import java.util.Scanner;
 /**

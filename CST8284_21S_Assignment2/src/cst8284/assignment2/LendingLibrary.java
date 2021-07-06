@@ -1,3 +1,4 @@
+package cst8284.assignment2;
 import java.util.ArrayList;
 
 /**
@@ -33,7 +34,6 @@ public class LendingLibrary {
 					&& u.getLastName()==userReg.get(i).getLastName()){
 				return false;
 			}
-			u.setId(i+u.getUserNextId()-1);
 		}
 		userReg.add(u);
 		return true;

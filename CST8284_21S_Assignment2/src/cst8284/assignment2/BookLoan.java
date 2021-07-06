@@ -1,3 +1,4 @@
+package cst8284.assignment2;
 
 /**
  * Class Name: CST8284_21S_301
@@ -55,9 +56,6 @@ public class BookLoan {
 		this.dueDate = dueDate;
 	}
 
-	//public boolean equal(User u)
-	//{	
-	//	id , firstname, lastname, address, age
-	//}	
+
 
 }

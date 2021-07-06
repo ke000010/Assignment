@@ -1,3 +1,4 @@
+package cst8284.assignment2;
 import java.util.Scanner;
 /**
  * Class Name: CST8284_21S_301
