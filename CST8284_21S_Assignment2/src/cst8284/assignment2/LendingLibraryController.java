@@ -1,6 +1,9 @@
 package cst8284.assignment2;
 import java.util.Objects;
+
 import java.util.Scanner;
+
+//import cst8284.s21.assignment1.sample.Book;
 /**
  * Class Name: CST8284_21S_301
  * Author Name: Jie Ke
@@ -9,15 +12,17 @@ import java.util.Scanner;
  * Class Name: LendingLibraryController
  * Description: This program solution the Assignment2 task. 
  */
+
 public class LendingLibraryController{
 	private LendingLibrary bookLib;
 	private static Scanner input = new Scanner(System.in);
+	private static final int ISBN_NUMBER = 10;
 
 	public LendingLibraryController(){
 		bookLib = new LendingLibrary();	
 	}
 	/**
-	 * Call getResponseTo() and makeUser() methods to
+	 * Call getResponseTo() methods to
 	 * add the users information
 	 *  
 	 */
@@ -31,7 +36,7 @@ public class LendingLibraryController{
 		while(true) {
 			if(isValidNumber(inputAge)) {
 				age = Integer.valueOf(inputAge);
-				if (age >=18) {
+				if (age >= 18) {
 					break;
 				}
 			}
@@ -45,7 +50,10 @@ public class LendingLibraryController{
 		System.out.println("User was added");
 
 	}
-	//modify the user's address.
+
+	/**
+	 * 
+	 */
 	public void changeUser(){
 		String last = getResponseTo("Change User\nLast name");
 		String first = getResponseTo("First name");
@@ -89,18 +97,19 @@ public class LendingLibraryController{
 		String author = getResponseTo("Author:");
 		String date = getResponseTo("Publication date (year in NNNN format)");
 		String isbn = getResponseTo("ISBN number(10 digits):");
-		Book b = new Book(title, author, date, isbn);
 
-		while(true) {
-			if(b.verifyISBNNumber(isbn)) {
-				break;
-			}else {
-				isbn = getResponseTo("ISBN number(10 digits): ");
-				b.setIsbnNumber(isbn);
+		if(verifyISBNNumber(isbn)) {
+			if(bookLib.findBook(isbn) != null) {
+				System.out.println("This book already exists can not be added");
+			} else {
+				Book b= new Book(title, author, date, isbn);
+				if ( !bookLib.addBook(b) ) {
+					System.out.println("Book can not be added");
+				} 
 			}
-		}
-		bookLib.addBook(b);
-		System.out.println("Book was added");
+		} else {
+			System.out.println("Invalid ISBN number");
+		}System.out.println("Book was added.");
 	}
 	//change the book's author, the title, or the publication date identified by the ISBN	
 	public void changeBook() {
@@ -230,7 +239,7 @@ public class LendingLibraryController{
 			}
 		}
 	}
-	public void deleteLoan() {
+	public void deleteBookLoan() {
 		BookLoan loan = bookLib.findLoan(getResponseTo("ISBN:"));
 		if (Objects.isNull(loan)) {
 			System.out.println("Could not find a bookLoan with this isbn");
@@ -258,6 +267,16 @@ public class LendingLibraryController{
 		}
 
 		return false;
+	}
+	public boolean verifyISBNNumber(String s) {
+
+		int j = 0;
+		for(int i = 0; i < s.length(); i++) {
+			if(Character.isDigit(s.charAt(i))) {
+				j++;
+			}
+		}
+		return j == ISBN_NUMBER;
 	}
 
 }

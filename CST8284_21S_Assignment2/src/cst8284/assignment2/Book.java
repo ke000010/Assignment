@@ -17,6 +17,7 @@ public class Book {
 	private String author;
 	private String publicationDate;
 	private String isbnNumber;
+
 	public Book() {
 		
 	}
@@ -61,21 +62,55 @@ public class Book {
 		this.isbnNumber = isbnNumber;
 	}
 
-	public boolean verifyISBNNumber(String s) {
-
-		if (s.length() == 10) {
-			return true;
-
-		}
-		return false;
-	}
 
 	public String toString() {
 		return ("\n*************Title: " + title + "\n*************Author: " + author
 				+ "\n*************Publication Year: " + publicationDate + "\n*************ISBN: " + isbnNumber + "\n ");
 	}
 
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof Book)) {
+			return false;
+		}
+		Book b = (Book) o;
+		if (author == null) {
+			if (b.author != null) {
+				return false;
+			}
+		} else if (!author.equals(b.author)) {
+			return false;
+		}
+		if (isbnNumber == null) {
+			if (b.isbnNumber != null) {
+				return false;
+			}
+		} else if (!isbnNumber.equals(b.isbnNumber)) {
+			return false;
+		}
+		if (publicationDate == null) {
+			if (b.publicationDate != null) {
+				return false;
+			}
+		} else if (!publicationDate.equals(b.publicationDate)) {
+			return false;
+		}
+		if (title == null) {
+			if (b.title != null) {
+				return false;
+			}
+		} else if (!title.equals(b.title)) {
+			return false;
+		}
+		return true;
+	}
 	public Book getBook() {
 		return this;
 	}
+
+	
 }

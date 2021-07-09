@@ -13,6 +13,8 @@ import java.util.ArrayList;
  * This class is the The add/find methods process the addition 
  * and searching of items in the corresponding arrays. 
  */
+
+
 public class LendingLibrary {
 
 	private static final int MAX_LOAN_PER_USER = 2;
@@ -25,7 +27,12 @@ public class LendingLibrary {
 
 	}
 
-	//add the user in the corresponding position
+	/**
+	 * Adds a user to the arraylist
+	 * @param u   User object
+	 * @return    if no such a user we can add return true 
+	 *            
+	 */
 	public boolean addUser(User u) {
 
 		for(int i = 0; i<userReg.size(); i++) {
@@ -38,7 +45,12 @@ public class LendingLibrary {
 		userReg.add(u);
 		return true;
 	}
-	//add the book in the corresponding position
+
+	/**
+	 * adds a book in arraylist
+	 * @param b   Book object
+	 * @return true if no such a book isbnnumber
+	 */
 	public boolean addBook(Book b) {
 
 		for(int i = 0; i<bookReg.size(); i++) {
@@ -50,7 +62,13 @@ public class LendingLibrary {
 		bookReg.add(b);
 		return true;
 	}
-	//Add the loan in the corresponding position
+
+	/**
+	 * adds a bookloan
+	 * @param l   bookloan object
+	 * @return    true if the book and user is correct
+	 *            else return false
+	 */
 	public boolean addLoan(BookLoan l) {
 
 		for(int i = 0; i<loanReg.size(); i++) {
@@ -75,7 +93,13 @@ public class LendingLibrary {
 		loanReg.add(l);
 		return true;
 	}	
-	//search a added user based on name
+
+	/**
+	 * find a user by firstname and lastname
+	 * @param firstName
+	 * @param lastName
+	 * @return
+	 */
 	public User findUser(String firstName, String lastName){
 
 		for(int i = 0; i<userReg.size(); i++) {
@@ -88,7 +112,16 @@ public class LendingLibrary {
 		}
 		return null;
 	}
-	//search a added book based on ISBN
+
+	/**
+	 * find a book by isbnnumber
+	 * @param isbnNumber    
+	 * @return
+	 */
+	/**
+	 * @param isbnNumber
+	 * @return
+	 */
 	public Book findBook(String isbnNumber) {
 
 		for(int i = 0; i<bookReg.size(); i++) {
@@ -113,7 +146,14 @@ public class LendingLibrary {
 		}
 		return null;
 	}
-	//delete a user
+
+	/**
+	 * delet a user
+	 * @param firstName
+	 * @param lastName
+	 * @return    if the user is correct name and wasn't loan
+	 *            can be delete return true
+	 */
 	public boolean deleteUser(String firstName, String lastName) {
 		int index = -1;
 		for(int i = 0; i<userReg.size(); i++) {
@@ -140,6 +180,14 @@ public class LendingLibrary {
 		userReg.remove(index);
 		return true;
 	}
+
+
+	/**
+	 * delet a book
+	 * @param isbnNumber
+	 * @return if the book isbnnumber is correct and wasn't loan
+	 *        can be delete return true
+	 */
 	public boolean deleteBook(String isbnNumber) {
 		int index = -1;
 		for(int i = 0; i<bookReg.size(); i++) {
@@ -165,6 +213,12 @@ public class LendingLibrary {
 		return true;
 	}
 
+	/**
+	 * delete a bookloan 
+	 * @param isbnNumber
+	 * @return if the book and user both correct can be delete
+	 *         return true
+	 */
 	public boolean deleteLoan(String isbnNumber) {
 		int index = -1;
 		for(int i = 0; i<loanReg.size(); i++) {
@@ -184,7 +238,13 @@ public class LendingLibrary {
 		loanReg.remove(index);
 		return true;
 	}
-	//Verified that the user has not borrowed more than 2 books.
+
+	/**
+	 * 
+	 * @param u
+	 * @return true if user loaned less than 2 books
+	 * 
+	 */
 	public boolean userCanBorrow(User u) {
 		int index = 0;
 		for (int i = 0; i<loanReg.size(); i++) {
@@ -200,18 +260,23 @@ public class LendingLibrary {
 			return true;  	
 		}
 	}
-	//Verified if the book is loaned.
+
+	/**
+	 * check if user has loaned book
+	 * @param b
+	 * @return
+	 */
 	public boolean isBookLoaned(Book b) {
 		for(int i = 0; i<loanReg.size(); i++) {
-			if(loanReg == null)
-				break;
-			if((loanReg.get(i).getBook().getIsbnNumber())
-					.equals(b.getIsbnNumber())){
+
+			if(loanReg != null 
+					&& loanReg.get(i).getBook().equals(b)){
 				return true;  
 			}
 		}	
 		return false;
 	}
+
 	public ArrayList<Book> getBookReg() {
 		return bookReg;
 	}

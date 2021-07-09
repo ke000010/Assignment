@@ -37,6 +37,41 @@ public class BookLoan {
 				+ dueDate + "\n";
 
 	}
+	
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof BookLoan)) {
+			return false;
+		}
+		BookLoan l = (BookLoan) o;
+		if (book == null) {
+			if (l.book != null) {
+				return false;
+			}
+		} else if (!book.equals(l.book)) {
+			return false;
+		}
+		if (dueDate == null) {
+			if (l.dueDate != null) {
+				return false;
+			}
+		} else if (!dueDate.equals(l.dueDate)) {
+			return false;
+		}
+		if (user == null) {
+			if (l.user != null) {
+				return false;
+			}
+		} else if (!user.equals(l.user)) {
+			return false;
+		}
+		return true;
+	}
+
 	public User getUser() {
 		return user;
 	}

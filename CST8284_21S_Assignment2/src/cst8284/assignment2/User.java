@@ -47,6 +47,43 @@ public class User {
 
 	}
 
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof User)) {
+			return false;
+		}
+		User u = (User) o;
+		if (address == null) {
+			if (u.address != null) {
+				return false;
+			}
+		} else if (!address.equals(u.address)) {
+			return false;
+		}
+		if (age != u.age) {
+			return false;
+		}
+		if (firstName == null) {
+			if (u.firstName != null) {
+				return false;
+			}
+		} else if (!firstName.equals(u.firstName)) {
+			return false;
+		}
+		if (lastName == null) {
+			if (u.lastName != null) {
+				return false;
+			}
+		} else if (!lastName.equals(u.lastName)) {
+			return false;
+		}
+		return true;
+	}
+
 	/**
 	 * 
 	 * @return

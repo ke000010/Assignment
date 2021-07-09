@@ -14,7 +14,11 @@ package cst8284.assignment2;
  *
  */
 public class AppLauncher {
-	//Code execution starts here.
+
+	/**
+	 * Code execution starts here
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		AppDriver appDriver = new AppDriver();
 		appDriver.startApp();

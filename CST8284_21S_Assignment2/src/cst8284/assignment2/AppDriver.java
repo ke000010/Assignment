@@ -131,7 +131,7 @@ public class AppDriver {
 			appController.deleteUser();
 			break;
 		case APP_DEL_LOAN:
-			appController.deleteLoan();
+			appController.deleteBookLoan();
 			break;
 		case APP_EXIT:
 			System.out.println("Good Bye!");
