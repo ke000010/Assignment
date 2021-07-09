@@ -1,5 +1,12 @@
 package cst8284.lab05.test;
-
+/**
+ * Class Name: CST8284_21S_301
+ * @author JieKe 
+ * Professor Name: Sandra Iroakazi
+ * Date: July 11, 2021 
+ * Class Name: SquareTest 
+ * Description: This program solution the Lab5 task.
+ */
 import static org.junit.Assert.*;
 
 
@@ -11,7 +18,7 @@ import org.junit.Test;
 import cst8284.lab05.*;
 
 public class SquareTest {
-	
+
 	private static final double WIDTH1 = 1.0;
 	private static final double WIDTH2 = 2.0;
 	private static Square square;
@@ -19,8 +26,8 @@ public class SquareTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-	
-	square = new Square(WIDTH1);
+
+		square = new Square(WIDTH1);
 
 	}
 	@AfterClass
@@ -30,8 +37,8 @@ public class SquareTest {
 	@Before
 	public void setUp() throws Exception {
 	}
-	
-	
+
+
 	@After
 	public void tearDown() throws Exception {
 	}
@@ -41,7 +48,7 @@ public class SquareTest {
 		double result = square.getArea();
 		double area = WIDTH1*WIDTH1;
 		assertTrue(Double.compare(result, area) == 0);
-		
+
 	}
 	@Test
 	public void testGetArea_False() {

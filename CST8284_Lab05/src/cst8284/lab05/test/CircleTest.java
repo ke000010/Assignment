@@ -1,5 +1,12 @@
 package cst8284.lab05.test;
-
+/**
+ * Class Name: CST8284_21S_301
+ * @author JieKe 
+ * Professor Name: Sandra Iroakazi
+ * Date: July 11, 2021 
+ * Class Name: CircleTest 
+ * Description: This program solution the Lab5 task.
+ */
 import static org.junit.Assert.*;
 
 
@@ -11,7 +18,7 @@ import org.junit.Test;
 import cst8284.lab05.*;
 
 public class CircleTest {
-	
+
 	private static final double WIDTH1 = 1.0;
 	private static final double WIDTH2 = 2.0;
 	private static Circle circle;
@@ -19,8 +26,8 @@ public class CircleTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-	
-	circle = new Circle(WIDTH1);
+
+		circle = new Circle(WIDTH1);
 
 	}
 	@AfterClass
@@ -30,8 +37,8 @@ public class CircleTest {
 	@Before
 	public void setUp() throws Exception {
 	}
-	
-	
+
+
 	@After
 	public void tearDown() throws Exception {
 	}
@@ -41,7 +48,7 @@ public class CircleTest {
 		double result = circle.getArea();
 		double area = Math.PI*WIDTH1*WIDTH1/4;
 		assertTrue(Double.compare(result, area) == 0);
-		
+
 	}
 	@Test
 	public void testGetArea_False() {
